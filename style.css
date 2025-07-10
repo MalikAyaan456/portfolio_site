@@ -5,7 +5,7 @@
     --secondary-color: #ffd700; /* Yellow for highlights */
     --text-color: #333;
     --light-text-color: #555;
-    --bg-color: #f0f2f5; /* A very light grey, similar to the reference image's background */
+    --bg-color: #fcfcfc; /* A very light, almost white background */
     --white: #fff;
     --border-radius: 8px;
 }
@@ -18,16 +18,30 @@
 }
 
 body {
-    background-color: var(--bg-color); /* Using the new subtle background color */
+    background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
     overflow-x: hidden;
+    position: relative; /* Needed for absolute positioning of ::before */
 }
 
-/* Removed the old Background Lines Effect (body::before) */
+/* Background Grid Lines Effect - Reintroduced and adjusted */
 body::before {
-    content: none; /* This line ensures no background lines appear */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Creating a subtle grid pattern */
+    background-image:
+        linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px; /* Adjust grid density */
+    z-index: -1;
+    opacity: 1; /* Keep it visible but subtle due to low color opacity */
 }
+
 
 .navbar {
     display: flex;
@@ -96,35 +110,36 @@ body::before {
 
 /* Mobile Menu Toggle */
 .menu-toggle {
-    display: none; /* Hidden by default, shown on smaller screens */
+    display: none;
     font-size: 1.8rem;
     cursor: pointer;
     color: var(--text-color);
-    z-index: 1001; /* Ensure it's above other elements */
+    z-index: 1001;
 }
 
-/* Hero Section (Dashboard) - Adjusted for precise layout matching reference image */
+/* Hero Section (Dashboard) - Adjusted for image on right */
 .hero {
     display: flex;
-    justify-content: center; /* Center the entire hero content horizontally */
+    justify-content: center;
     align-items: center;
     padding: 4rem 5%;
-    min-height: calc(100vh - 80px); /* Adjust based on navbar height */
-    gap: 4rem; /* Increased gap for more separation as in reference */
-    max-width: 1200px; /* Constrain max width for desktop view */
-    margin: 0 auto; /* Center the hero section itself */
+    min-height: calc(100vh - 80px);
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .hero-content {
-    flex: 1; /* Allows it to take available space */
-    max-width: 550px; /* Adjusted content width to better match reference */
-    text-align: left; /* Aligns text to the left */
-    order: 2; /* Places content after the image (on the right) */
-    padding-left: 2rem; /* Add some padding to separate from image */
+    flex: 1;
+    max-width: 550px;
+    text-align: left;
+    order: 1; /* Places content before the image (on the left) */
+    padding-right: 2rem; /* Add some padding to separate from image */
+    padding-left: 0; /* Remove previous padding-left */
 }
 
 .hero-content h1 {
-    font-size: 3.5rem; /* Increased font size for prominence */
+    font-size: 3.5rem;
     line-height: 1.2;
     margin-bottom: 1rem;
     font-weight: 700;
@@ -135,9 +150,9 @@ body::before {
 }
 
 .hero-content p {
-    font-size: 1.2rem; /* Increased font size */
+    font-size: 1.2rem;
     color: var(--light-text-color);
-    margin-bottom: 2rem; /* Adjusted spacing */
+    margin-bottom: 2rem;
 }
 
 .buttons-container {
@@ -170,26 +185,26 @@ body::before {
 }
 
 .hero-image {
-    flex: none; /* Prevents it from growing/shrinking */
+    flex: none;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--secondary-color); /* Yellow background for the image */
-    border-radius: 50%; /* Circular background */
+    border-radius: 50%;
     width: 350px; /* Adjusted size to closely match reference image */
     height: 350px; /* Adjusted size to closely match reference image */
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    order: 1; /* Places image before content (on the left) */
-    /* Added margin-right to push it slightly left, similar to reference */
-    margin-right: 2rem;
+    order: 2; /* Places image after content (on the right) */
+    margin-left: 2rem; /* Add some margin to separate from text */
+    margin-right: 0; /* Remove previous margin-right */
 }
 
 .hero-image img {
-    max-width: 90%; /* Image fills its container, with a slight border/padding effect from the yellow circle */
+    max-width: 90%;
     max-height: 90%;
-    border-radius: 50%; /* Image itself is circular within the div */
-    object-fit: cover; /* Ensures the image covers the circular area */
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 /* Introduction and My Projects Page Styling (unchanged) */
@@ -267,26 +282,26 @@ table td a:hover {
 /* Responsive Design */
 @media (max-width: 992px) {
     .hero {
-        flex-direction: column; /* Stack vertically on smaller screens */
+        flex-direction: column;
         text-align: center;
         padding: 3rem 5%;
-        justify-content: center; /* Center items when stacked */
-        gap: 2rem; /* Reduce gap on mobile */
+        justify-content: center;
+        gap: 2rem;
     }
 
     .hero-content {
         max-width: 100%;
         order: 2; /* Content below image on mobile */
-        text-align: center; /* Center text on mobile */
-        padding-left: 0; /* Remove padding for mobile */
+        text-align: center;
+        padding-right: 0; /* Remove padding for mobile */
     }
 
     .hero-image {
-        margin-top: 0; /* No top margin needed for centered stack */
+        margin-top: 0;
         order: 1; /* Image above content on mobile */
         width: 250px; /* Adjust size for mobile */
-        height: 250px; /* Adjust size for mobile */
-        margin-right: 0; /* Remove right margin for mobile */
+        height: 250px;
+        margin-left: 0; /* Remove margin for mobile */
     }
 
     .navbar .nav-links-wrapper {
@@ -383,4 +398,5 @@ table td a:hover {
         width: 200px;
         height: 200px;
     }
-}
+    }
+    
