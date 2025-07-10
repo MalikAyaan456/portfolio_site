@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Malik Ayaan - AI Engineer</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9fafb;
+      color: #1f2937;
+    }
+    .container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 10%;
+      background: white;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    .text-content {
+      max-width: 50%;
+    }
+    .text-content h1 {
+      font-size: 3em;
+      margin: 0;
+      color: #111827;
+    }
+    .buttons {
+      margin-top: 25px;
+    }
+    .btn {
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      margin-right: 15px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background-color: #1e40af;
+    }
+    .ai-image {
+      max-width: 45%;
+      border-radius: 20px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    }
+    .section {
+      display: none;
+      max-width: 900px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    .section h2 {
+      margin-top: 0;
+      font-size: 1.8em;
+      color: #111827;
+    }
+    .section p {
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table, th, td {
+      border: 1px solid #d1d5db;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #f3f4f6;
+      font-weight: bold;
+    }
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 800px) {
+      .container {
+        flex-direction: column;
+        padding: 40px 5%;
+      }
+      .text-content, .ai-image {
+        max-width: 100%;
+        text-align: center;
+      }
+      .buttons {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="text-content">
+    <h1>Hi There,<br>I Am Malik Ayaan</h1>
+    <div class="buttons">
+      <button class="btn" onclick="showSection('intro')">Introduction</button>
+      <button class="btn" onclick="showSection('projects')">My Projects</button>
+    </div>
+  </div>
+  <img src="https://i.imgur.com/FDtEn5W.png" alt="AI Agent" class="ai-image">
+</div>
+
+<div id="intro" class="section">
+  <h2>Intrudinction</h2>
+  <p>
+    I am Malik Ayaan. I read in class 8. I am an AI engineer. I have made this site during summer camp. I develop different generative AI models. You can check my AI models by clicking "My Projects" in the dashboard. Take help from my AI models, which are very good for me. I feel good if any of my models help you. Please try my models.
+  </p>
+</div>
+
+<div id="projects" class="section">
+  <h2>My Projects</h2>
+  <p>
+    These are my AI models created by me. Please must try and get help.
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Project Name</th>
+        <th>Visit Project</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Story Writer</td>
+        <td><a href="https://huggingface.co/spaces/MalikAyaanAhmed1123/Story_writer" target="_blank">Visit</a></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Mock Interview Generator</td>
+        <td><a href="https://huggingface.co/spaces/MalikAyaanAhmed1123/Mock_interview_generator" target="_blank">Visit</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  function showSection(id) {
+    document.getElementById('intro').style.display = 'none';
+    document.getElementById('projects').style.display = 'none';
+    document.getElementById(id).style.display = 'block';
+    window.scrollTo({ top: document.getElementById(id).offsetTop, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
