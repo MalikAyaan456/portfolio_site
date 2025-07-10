@@ -60,16 +60,17 @@ body::before {
     color: var(--primary-color);
 }
 
-.navbar nav ul {
+/* Navigation Links Wrapper */
+.nav-links-wrapper nav ul {
     list-style: none;
     display: flex;
 }
 
-.navbar nav ul li {
+.nav-links-wrapper nav ul li {
     margin-left: 2rem;
 }
 
-.navbar nav ul li a {
+.nav-links-wrapper nav ul li a {
     text-decoration: none;
     color: var(--text-color);
     font-weight: 500;
@@ -78,12 +79,12 @@ body::before {
     transition: color 0.3s ease;
 }
 
-.navbar nav ul li a:hover,
-.navbar nav ul li a.active {
+.nav-links-wrapper nav ul li a:hover,
+.nav-links-wrapper nav ul li a.active {
     color: var(--primary-color);
 }
 
-.navbar nav ul li a::after {
+.nav-links-wrapper nav ul li a::after {
     content: '';
     position: absolute;
     width: 0;
@@ -94,8 +95,8 @@ body::before {
     transition: width 0.3s ease;
 }
 
-.navbar nav ul li a.active::after,
-.navbar nav ul li a:hover::after {
+.nav-links-wrapper nav ul li a.active::after,
+.nav-links-wrapper nav ul li a:hover::after {
     width: 100%;
 }
 
@@ -103,6 +104,15 @@ body::before {
     font-size: 1.2rem;
     color: var(--primary-color);
     margin-right: 5px;
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none; /* Hidden by default, shown on smaller screens */
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--text-color);
+    z-index: 1001; /* Ensure it's above other elements */
 }
 
 /* Hero Section (Dashboard) */
@@ -166,7 +176,8 @@ body::before {
     transform: translateY(-2px);
 }
 
-.social-links {
+/* The social-links styling is no longer needed as the div was removed */
+/* .social-links {
     display: flex;
     gap: 1rem;
 }
@@ -187,7 +198,7 @@ body::before {
 .social-icon:hover {
     background-color: var(--primary-color);
     transform: translateY(-2px);
-}
+} */
 
 .hero-image {
     flex: 1;
@@ -200,6 +211,8 @@ body::before {
     height: 400px;
     overflow: hidden; /* Ensure image stays within circle */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    /* NEW: This moves the image up */
+    margin-top: -30px; /* Adjust this value (-30px) as needed. Try -20px, -50px, etc., to find what looks best. */
 }
 
 .hero-image img {
@@ -294,29 +307,61 @@ table td a:hover {
     }
 
     .hero-image {
-        margin-top: 2rem;
+        margin-top: 2rem; /* Reset margin for mobile to keep it centered */
         width: 300px;
         height: 300px;
     }
 
-    .navbar nav ul {
-        display: none; /* Hide navigation for smaller screens */
+    .navbar .nav-links-wrapper {
+        display: none; /* Hide by default on smaller screens */
+        position: absolute;
+        top: 100%; /* Position below the navbar */
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+        transition: all 0.3s ease-in-out;
+        transform: translateY(-100%); /* Start hidden above */
+        opacity: 0;
+        pointer-events: none; /* Prevent clicks when hidden */
+    }
+
+    .navbar .nav-links-wrapper.nav-open {
+        display: flex; /* Show when open */
+        transform: translateY(0); /* Slide down */
+        opacity: 1;
+        pointer-events: auto; /* Allow clicks when open */
+    }
+
+    .navbar .nav-links-wrapper nav ul {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar .nav-links-wrapper nav ul li {
+        margin: 0.8rem 0;
+        width: 100%;
+    }
+
+    .navbar .nav-links-wrapper nav ul li a {
+        padding: 0.8rem 0;
+        display: block; /* Make links full width for easier tapping */
+    }
+
+    .menu-toggle {
+        display: block; /* Show hamburger icon */
     }
 }
 
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 1rem 5%;
-    }
-
-    .navbar nav ul {
-        margin-top: 1rem;
-    }
-
-    .navbar nav ul li {
-        margin-left: 1rem;
+        flex-direction: row; /* Keep logo and toggle on one row */
+        justify-content: space-between;
+        align-items: center;
     }
 
     .hero-content h1 {
@@ -367,5 +412,5 @@ table td a:hover {
         height: 40px;
         font-size: 1rem;
     }
-}
-  
+        }
+    
