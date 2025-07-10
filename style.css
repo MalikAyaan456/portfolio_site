@@ -26,7 +26,7 @@ body {
 
 /* Removed the old Background Lines Effect (body::before) */
 body::before {
-    content: none; /* This line removes the old background lines */
+    content: none; /* This line ensures no background lines appear */
 }
 
 .navbar {
@@ -103,26 +103,28 @@ body::before {
     z-index: 1001; /* Ensure it's above other elements */
 }
 
-/* Hero Section (Dashboard) - Adjusted for new layout */
+/* Hero Section (Dashboard) - Adjusted for precise layout matching reference image */
 .hero {
     display: flex;
-    /* Changed to distribute items and center them vertically */
-    justify-content: space-around; /* Distributes items with space around them */
+    justify-content: center; /* Center the entire hero content horizontally */
     align-items: center;
     padding: 4rem 5%;
-    min-height: calc(100vh - 80px);
-    gap: 3rem; /* Space between content and image */
+    min-height: calc(100vh - 80px); /* Adjust based on navbar height */
+    gap: 4rem; /* Increased gap for more separation as in reference */
+    max-width: 1200px; /* Constrain max width for desktop view */
+    margin: 0 auto; /* Center the hero section itself */
 }
 
 .hero-content {
     flex: 1; /* Allows it to take available space */
-    max-width: 500px; /* Adjust content width */
+    max-width: 550px; /* Adjusted content width to better match reference */
     text-align: left; /* Aligns text to the left */
     order: 2; /* Places content after the image (on the right) */
+    padding-left: 2rem; /* Add some padding to separate from image */
 }
 
 .hero-content h1 {
-    font-size: 3rem; /* Slightly reduced font size for balance */
+    font-size: 3.5rem; /* Increased font size for prominence */
     line-height: 1.2;
     margin-bottom: 1rem;
     font-weight: 700;
@@ -133,15 +135,15 @@ body::before {
 }
 
 .hero-content p {
-    font-size: 1.1rem; /* Slightly reduced font size */
+    font-size: 1.2rem; /* Increased font size */
     color: var(--light-text-color);
-    margin-bottom: 1.5rem; /* Adjusted spacing */
+    margin-bottom: 2rem; /* Adjusted spacing */
 }
 
 .buttons-container {
     display: flex;
     gap: 1rem;
-    margin-bottom: 0; /* No extra margin here */
+    margin-bottom: 0;
 }
 
 .btn {
@@ -151,7 +153,7 @@ body::before {
     background-color: var(--primary-color);
     color: var(--white);
     text-decoration: none;
-    border-radius: 50px; /* More rounded like the image */
+    border-radius: 50px;
     font-weight: 500;
     transition: background-color 0.3s ease, transform 0.2s ease;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -163,7 +165,7 @@ body::before {
 }
 
 .btn:hover {
-    background-color: #5b4bab; /* Slightly darker purple */
+    background-color: #5b4bab;
     transform: translateY(-2px);
 }
 
@@ -174,17 +176,18 @@ body::before {
     align-items: center;
     background-color: var(--secondary-color); /* Yellow background for the image */
     border-radius: 50%; /* Circular background */
-    width: 250px; /* Adjusted size to match reference image */
-    height: 250px; /* Adjusted size to match reference image */
+    width: 350px; /* Adjusted size to closely match reference image */
+    height: 350px; /* Adjusted size to closely match reference image */
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    margin-top: 0; /* Removed previous negative margin as layout changed */
     order: 1; /* Places image before content (on the left) */
+    /* Added margin-right to push it slightly left, similar to reference */
+    margin-right: 2rem;
 }
 
 .hero-image img {
-    max-width: 100%; /* Image fills its container */
-    max-height: 100%;
+    max-width: 90%; /* Image fills its container, with a slight border/padding effect from the yellow circle */
+    max-height: 90%;
     border-radius: 50%; /* Image itself is circular within the div */
     object-fit: cover; /* Ensures the image covers the circular area */
 }
@@ -192,10 +195,10 @@ body::before {
 /* Introduction and My Projects Page Styling (unchanged) */
 .page-content {
     padding: 4rem 5%;
-    min-height: calc(100vh - 80px); /* Adjust based on navbar height */
+    min-height: calc(100vh - 80px);
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Align to top */
+    align-items: flex-start;
 }
 
 .page-content .container {
@@ -275,19 +278,21 @@ table td a:hover {
         max-width: 100%;
         order: 2; /* Content below image on mobile */
         text-align: center; /* Center text on mobile */
+        padding-left: 0; /* Remove padding for mobile */
     }
 
     .hero-image {
         margin-top: 0; /* No top margin needed for centered stack */
         order: 1; /* Image above content on mobile */
-        width: 200px; /* Adjust size for mobile */
-        height: 200px; /* Adjust size for mobile */
+        width: 250px; /* Adjust size for mobile */
+        height: 250px; /* Adjust size for mobile */
+        margin-right: 0; /* Remove right margin for mobile */
     }
 
     .navbar .nav-links-wrapper {
-        display: none; /* Hide by default, shown on smaller screens */
+        display: none;
         position: absolute;
-        top: 100%; /* Position below the navbar */
+        top: 100%;
         left: 0;
         width: 100%;
         background-color: var(--white);
@@ -296,16 +301,16 @@ table td a:hover {
         align-items: center;
         padding: 1rem 0;
         transition: all 0.3s ease-in-out;
-        transform: translateY(-100%); /* Start hidden above */
+        transform: translateY(-100%);
         opacity: 0;
-        pointer-events: none; /* Prevent clicks when hidden */
+        pointer-events: none;
     }
 
     .navbar .nav-links-wrapper.nav-open {
-        display: flex; /* Show when open */
-        transform: translateY(0); /* Slide down */
+        display: flex;
+        transform: translateY(0);
         opacity: 1;
-        pointer-events: auto; /* Allow clicks when open */
+        pointer-events: auto;
     }
 
     .navbar .nav-links-wrapper nav ul {
@@ -321,23 +326,23 @@ table td a:hover {
 
     .navbar .nav-links-wrapper nav ul li a {
         padding: 0.8rem 0;
-        display: block; /* Make links full width for easier tapping */
+        display: block;
     }
 
     .menu-toggle {
-        display: block; /* Show hamburger icon */
+        display: block;
     }
 }
 
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: row; /* Keep logo and toggle on one row */
+        flex-direction: row;
         justify-content: space-between;
         align-items: center;
     }
 
     .hero-content h1 {
-        font-size: 2.5rem; /* Adjusted for smaller screens */
+        font-size: 2.5rem;
     }
 
     .hero-content p {
@@ -374,9 +379,8 @@ table td a:hover {
 }
 
 @media (max-width: 480px) {
-    /* hero-image size already adjusted in 992px media query */
     .hero-image {
-        width: 180px; /* Smaller for very small screens */
-        height: 180px;
+        width: 200px;
+        height: 200px;
     }
 }
