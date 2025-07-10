@@ -25,7 +25,7 @@ body {
     position: relative; /* Needed for absolute positioning of ::before */
 }
 
-/* Background Grid Lines Effect - Reintroduced and adjusted */
+/* Background Grid Lines Effect */
 body::before {
     content: '';
     position: absolute;
@@ -117,7 +117,7 @@ body::before {
     z-index: 1001;
 }
 
-/* Hero Section (Dashboard) - Adjusted for image on right */
+/* Hero Section (Dashboard) - Adjusted for image on right, transparent background */
 .hero {
     display: flex;
     justify-content: center;
@@ -189,22 +189,22 @@ body::before {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--secondary-color); /* Yellow background for the image */
-    border-radius: 50%;
-    width: 350px; /* Adjusted size to closely match reference image */
-    height: 350px; /* Adjusted size to closely match reference image */
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    /* Removed background-color to make it transparent */
+    border-radius: 50%; /* Still keeps the circular shape for overflow and mask */
+    width: 350px;
+    height: 350px;
+    overflow: hidden; /* Important for circular masking */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Lighter shadow for transparent look */
     order: 2; /* Places image after content (on the right) */
-    margin-left: 2rem; /* Add some margin to separate from text */
-    margin-right: 0; /* Remove previous margin-right */
+    margin-left: 2rem;
+    margin-right: 0;
 }
 
 .hero-image img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 50%;
-    object-fit: cover;
+    max-width: 100%; /* Changed to 100% to fill the circular container more */
+    max-height: 100%;
+    border-radius: 50%; /* Image itself is circular within the div */
+    object-fit: cover; /* Ensures the image covers the circular area */
 }
 
 /* Introduction and My Projects Page Styling (unchanged) */
@@ -398,5 +398,4 @@ table td a:hover {
         width: 200px;
         height: 200px;
     }
-    }
-    
+        }
